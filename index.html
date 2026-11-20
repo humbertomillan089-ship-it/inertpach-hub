@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Football Live - Marcadores y Tablas Internacionales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout-app">
+        <!-- Barra lateral / Superior de control -->
+        <header class="topbar">
+            <div class="marca">
+                <span class="icono-balon">⚽</span>
+                <div>
+                    <h1>WORLD FOOTBALL <span class="dorado">LIVE</span></h1>
+                    <p>Cobertura internacional en tiempo real</p>
+                </div>
+            </div>
+
+            <div class="controles-liga">
+                <label for="selector-liga">Competición:</label>
+                <select id="selector-liga" onchange="cambiarLiga()">
+                    <option value="uefa.champions">🏆 UEFA Champions League</option>
+                    <option value="eng.1">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League (Inglaterra)</option>
+                    <option value="esp.1">🇪🇸 LaLiga (España)</option>
+                    <option value="ita.1">🇮🇹 Serie A (Italia)</option>
+                    <option value="ger.1">🇩🇪 Bundesliga (Alemania)</option>
+                </select>
+                <button id="btn-refrescar" onclick="actualizarTodo()">↻</button>
+            </div>
+        </header>
+
+        <!-- Barra de estado en vivo -->
+        <div class="status-strip">
+            <div class="live-indicator">
+                <span class="dot"></span>
+                <span id="nombre-liga-actual">UEFA Champions League</span>
+            </div>
+            <span id="ultima-actualizacion">Sincronizando...</span>
+        </div>
+
+        <!-- Pestañas estilo marcador digital -->
+        <nav class="tabs-bar">
+            <button id="tab-marcadores" class="tab-btn active" onclick="mostrarVista('marcadores')">🔥 Marcadores & Jornada</button>
+            <button id="tab-posiciones" class="tab-btn" onclick="mostrarVista('posiciones')">📊 Tabla de Posiciones</button>
+            <button id="tab-noticias" class="tab-btn" onclick="mostrarVista('noticias')">📰 Noticias Globales</button>
+        </nav>
+
+        <main>
+            <!-- Vista 1: Marcadores (En vivo, Resultados y Próximos) -->
+            <section id="vista-marcadores" class="vista activa">
+                <div class="subtitulo-bloque">
+                    <h2>En Vivo y Resultados Recientes</h2>
+                </div>
+                <div id="grid-resultados" class="grid-partidos"></div>
+
+                <div class="subtitulo-bloque" style="margin-top: 35px;">
+                    <h2>Próximos Encuentros</h2>
+                </div>
+                <div id="grid-proximos" class="grid-partidos"></div>
+            </section>
+
+            <!-- Vista 2: Tabla de Posiciones -->
+            <section id="vista-posiciones" class="vista">
+                <div class="subtitulo-bloque">
+                    <h2>Clasificación Oficial</h2>
+                </div>
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th style="text-align:left;">Club</th>
+                                <th>PJ</th>
+                                <th>G</th>
+                                <th>E</th>
+                                <th>P</th>
+                                <th>DG</th>
+                                <th>PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-tabla"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Vista 3: Noticias Internacionales -->
+            <section id="vista-noticias" class="vista">
+                <div class="subtitulo-bloque">
+                    <h2>Últimas Noticias de la Competición</h2>
+                </div>
+                <div id="grid-noticias" class="grid-noticias"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Football Live • Datos deportivos internacionales en tiempo real</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
